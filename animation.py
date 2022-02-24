@@ -141,5 +141,6 @@ class SinAndCosFunctionPlot(Scene):
 
 
 config.quality = 'high_quality'
+config.format = 'gif'
 scene = SinAndCosFunctionPlot()
 scene.render(preview=True)
