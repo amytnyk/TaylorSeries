@@ -67,5 +67,3 @@ def view_overall_accuracy():
     for iters in [2, 5, 7, 8, 10, 12, 15, 20]:
         rows.append([iters, calc_max_error(iters)])
     print(tabulate(rows, headers=['Iterations', 'Max diff on (0; pi/2)']))
-
-print(view_accuracy(.5))
