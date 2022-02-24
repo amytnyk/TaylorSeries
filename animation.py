@@ -140,7 +140,7 @@ class SinAndCosFunctionPlot(Scene):
         self.wait(2)
 
 
-config.quality = 'high_quality'
+config.quality = 'medium_quality'
 config.format = 'gif'
 scene = SinAndCosFunctionPlot()
 scene.render(preview=True)

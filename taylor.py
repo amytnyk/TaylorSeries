@@ -1,5 +1,5 @@
 import math
-from typing import Tuple
+from tabulate import tabulate
 
 
 def get_actual_value(x: float) -> float:
@@ -34,9 +34,9 @@ def calc_max_error(iters: int) -> float:
     """
     Returns maximum error
     >>> calc_max_error(10)
-    0.0017307803078218393
+    0.0016788970882212256
     """
-    return max(map(lambda x: calc_error(x / 500, iters), range(int(math.pi * 1000))))
+    return max(map(lambda x: calc_error(x / 500, iters), range(int(math.pi * 250))))
 
 
 def get_count(x: float, epsilon: int):
@@ -55,15 +55,17 @@ def get_count(x: float, epsilon: int):
     return k
 
 
-def taylor_series(x: float, iters: int) -> Tuple[float, float]:
-    """
-
-    :param x:
-    :param iters:
-    :return:
-    """
-    return calc_error(x, iters), calc_taylor_series(x, iters)
+def view_accuracy(x: float):
+    rows = []
+    for iters in [2, 5, 7, 8, 10, 12, 15, 20]:
+        rows.append([iters, calc_error(x, iters)])
+    print(tabulate(rows, headers=['Iterations', 'Diff']))
 
 
-def main():
-    pass
+def view_overall_accuracy():
+    rows = []
+    for iters in [2, 5, 7, 8, 10, 12, 15, 20]:
+        rows.append([iters, calc_max_error(iters)])
+    print(tabulate(rows, headers=['Iterations', 'Max diff on (0; pi/2)']))
+
+print(view_accuracy(.5))
